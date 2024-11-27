@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
+import Button from "../common/Button";
+import {Link} from "react-router-dom";
 
 
 const AuthFormBlock = styled.div`
@@ -48,11 +50,54 @@ const Footer = styled.div`
     }
 `;
 
-const AuthForm = () => {
+const ButtonWithMarginTop = styled(Button)`
+    margin-top: 1rem;
+`
+
+const textMap = {
+    login:'로그인',
+    register : '회원가입'
+}
+
+
+const AuthForm = ({type}) => {
+
+    const text = textMap[type];
 
     return (
         <AuthFormBlock>
-            <h3>로그인</h3>
+            <h3>{text}</h3>
+            <form>
+                <StyledInput
+                    autoComplete={"username"}
+                    name={"username"}
+                    placeholder={"아이디 입력"}/>
+
+                <StyledInput
+                    type={"password"}
+                    autoComplete={"new-password"}
+                    name={"password"}
+                    placeholder={"비밀번호 입력"}/>
+                {/*<Button cyan fullWidth style={{marginTop : '1rem'}}>로그인</Button>*/}
+
+                {type === 'register' && (
+                    <StyledInput
+                        type={"password"}
+                        autoComplete={"new-password"}
+                        name={"passwordConfirm"}
+                        placeholder={"비밀번호 재입력"}/>
+                )}
+
+                <ButtonWithMarginTop cyan fullWidth>{text}</ButtonWithMarginTop>
+            </form>
+            <Footer>
+                {type === 'login'  ? (
+                    <Link to={"/register"}>{textMap['register']}</Link>
+                ) : (
+                    <Link to={"/login"}>{textMap['login']}</Link>
+                )}
+
+            </Footer>
         </AuthFormBlock>
     )
 }

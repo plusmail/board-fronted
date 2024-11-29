@@ -33,6 +33,50 @@ const StyledInput = styled.input`
     }
 `;
 
+// Styled Select
+const StyledSelect = styled.select`
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+
+    &:focus {
+        outline: none;
+        border-color: #007bff;
+        background-color: #fff;
+    }
+
+    option {
+        font-size: 14px;
+        color: #333;
+        padding: 10px;
+        background-color: #fff;
+
+        &:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    }
+`;
+
+// Styled Option (선택적으로 사용)
+const StyledOption = styled.option`
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+
+  &:hover {
+    background-color: #007bff;
+    color: white;
+  }
+`;
+
+
 /**
  * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
  */
@@ -55,8 +99,8 @@ const ButtonWithMarginTop = styled(Button)`
 `
 
 const textMap = {
-    login:'로그인',
-    register : '회원가입'
+    login: '로그인',
+    register: '회원가입'
 }
 
 
@@ -69,17 +113,17 @@ const AuthForm = ({type, form, onChange, onSubmit}) => {
             <h3>{text}</h3>
             <form onSubmit={onSubmit}>
                 <StyledInput
-                    autoComplete={"username"}
-                    name={"username"}
+                    autoComplete={"mid"}
+                    name={"mid"}
                     placeholder={"아이디 입력"}
                     onChange={onChange}
-                    value={form.username}
+                    value={form.mid}
 
                 />
 
                 <StyledInput
                     type={"password"}
-                    autoComplete={"new-password"}
+                    autoComplete={"password"}
                     name={"password"}
                     placeholder={"비밀번호 입력"}
                     onChange={onChange}
@@ -88,20 +132,130 @@ const AuthForm = ({type, form, onChange, onSubmit}) => {
                 {/*<Button cyan fullWidth style={{marginTop : '1rem'}}>로그인</Button>*/}
 
                 {type === 'register' && (
-                    <StyledInput
-                        type={"password"}
-                        autoComplete={"new-password"}
-                        name={"passwordConfirm"}
-                        placeholder={"비밀번호 재입력"}
-                        onChange={onChange}
-                        value={form.passwordConfirm}
-                    />
+                    <>
+                        <StyledInput
+                            type={"password"}
+                            autoComplete={"passwordConfirm"}
+                            name={"passwordConfirm"}
+                            placeholder={"비밀번호 재입력"}
+                            onChange={onChange}
+                            value={form.passwordConfirm}
+                        />
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"name"}
+                            name={"name"}
+                            placeholder={"이름입력"}
+                            onChange={onChange}
+                            value={form.name}
+                        />
+
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"email"}
+                            name={"email"}
+                            placeholder={"메일입력"}
+                            onChange={onChange}
+                            value={form.email}
+                        />
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"phone"}
+                            name={"phone"}
+                            placeholder={"전화입력"}
+                            onChange={onChange}
+                            value={form.phone}
+                        />
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"tel"}
+                            name={"tel"}
+                            placeholder={"전화2입력"}
+                            onChange={onChange}
+                            value={form.tel}
+                        />
+
+                        <StyledInput
+                            type={"checkbox"}
+                            autoComplete={"retirement"}
+                            name={"retirement"}
+                            placeholder={"퇴직"}
+                            onChange={onChange}
+                            value={form.retirement}
+                        />
+
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"social"}
+                            name={"social"}
+                            placeholder={"SNS"}
+                            onChange={onChange}
+                            value={form.social}
+                        />
+
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"zipCode"}
+                            name={"zipCode"}
+                            placeholder={"ZIP"}
+                            onChange={onChange}
+                            value={form.zipCode}
+                        />
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"address"}
+                            name={"address"}
+                            placeholder={"address"}
+                            onChange={onChange}
+                            value={form.address}
+                        />
+
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"detailAddress"}
+                            name={"detailAddress"}
+                            placeholder={"detailAddress"}
+                            onChange={onChange}
+                            value={form.detailAddress}
+                        />
+
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"note"}
+                            name={"note"}
+                            placeholder={"note"}
+                            onChange={onChange}
+                            value={form.note}
+                        />
+                        <StyledInput
+                            type={"text"}
+                            autoComplete={"regDate"}
+                            name={"regDate"}
+                            placeholder={"regDate"}
+                            onChange={onChange}
+                            value={form.regDate}
+                        />
+                        <StyledSelect
+                            type={"text"}
+                            autoComplete={"roles"}
+                            name={"roles"}
+                            placeholder={"roles"}
+                            onChange={onChange}
+                            value={form.roles}
+                        >
+                            <StyledOption value="EMP">EMP</StyledOption>
+                            <StyledOption value="ADMIN">ADMIN</StyledOption>
+                        </StyledSelect>
+
+                    </>
+
                 )}
+
 
                 <ButtonWithMarginTop cyan={"true"} fullWidth>{text}</ButtonWithMarginTop>
             </form>
             <Footer>
-                {type === 'login'  ? (
+                {type === 'login' ? (
                     <Link to={"/register"}>{textMap['register']}</Link>
                 ) : (
                     <Link to={"/login"}>{textMap['login']}</Link>
